@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SG 4D Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-badge">4D</span>
+      SG 4D Analysis
+    </div>
+    <div class="header-meta" id="cacheInfo">Loading…</div>
+  </div>
+</header>
+
+<div class="container">
+  <!-- TABS -->
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="results">Latest Results</button>
+    <button class="tab-btn" data-tab="frequency">Frequency Analysis</button>
+    <button class="tab-btn" data-tab="hotcold">Hot &amp; Cold</button>
+    <button class="tab-btn" data-tab="suggest">Suggestions ⚠️</button>
+    <button class="tab-btn" data-tab="lookup">Number Lookup</button>
+  </nav>
+
+  <!-- TAB 1: LATEST RESULTS -->
+  <div class="tab-pane active" id="tab-results">
+    <div id="drawGrid" class="draw-grid"></div>
+    <div class="load-more-wrap">
+      <button class="btn secondary" id="loadMoreBtn">Load More</button>
+    </div>
+  </div>
+
+  <!-- TAB 2: FREQUENCY ANALYSIS -->
+  <div class="tab-pane" id="tab-frequency">
+    <div class="filter-row">
+      <span class="filter-label">Prize:</span>
+      <button class="pill-btn active" data-freq-prize="all">All</button>
+      <button class="pill-btn" data-freq-prize="top3">Top 3</button>
+      <button class="pill-btn" data-freq-prize="starters">Starters</button>
+      <button class="pill-btn" data-freq-prize="consolation">Consolation</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Range:</span>
+      <button class="pill-btn active" data-freq-range="all">All draws</button>
+      <button class="pill-btn" data-freq-range="30">Last 30</button>
+      <button class="pill-btn" data-freq-range="60">Last 60</button>
+      <button class="pill-btn" data-freq-range="90">Last 90</button>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="section-title">Digit Frequency by Position</div>
+      <div class="heatmap-grid" id="heatmapGrid"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Most Drawn Numbers</div>
+      <div id="freqTableWrap"></div>
+    </div>
+  </div>
+
+  <!-- TAB 3: HOT & COLD -->
+  <div class="tab-pane" id="tab-hotcold">
+    <div class="filter-row">
+      <span class="filter-label">Range:</span>
+      <button class="pill-btn" data-hc-range="10">Last 10</button>
+      <button class="pill-btn active" data-hc-range="20">Last 20</button>
+      <button class="pill-btn" data-hc-range="30">Last 30</button>
+      <button class="pill-btn" data-hc-range="50">Last 50</button>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="hc-section">
+        <div class="hc-title hot">🔥 Hot Numbers</div>
+        <div class="badge-grid" id="hotGrid"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="hc-section">
+        <div class="hc-title cold">❄️ Cold Numbers</div>
+        <div class="badge-grid" id="coldGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: SUGGESTIONS -->
+  <div class="tab-pane" id="tab-suggest">
+    <div class="disclaimer-banner">
+      <strong>⚠️ Entertainment Only — Please Read</strong>
+      These suggestions are based on statistical patterns only.
+      4D draws are entirely random — past patterns do not predict future results.
+      This feature is for entertainment purposes only. Please gamble responsibly.
+    </div>
+
+    <div style="text-align:center; margin-bottom:24px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <button class="btn" id="generateBtn">Generate Suggestions</button>
+      <button class="btn secondary" id="regenBtn" style="display:none">↺ Regenerate</button>
+    </div>
+
+    <div id="suggestGrid" class="suggest-grid"></div>
+    <p style="text-align:center; color:var(--text-dim); font-size:11.5px; margin-top:16px" id="suggestDisclaimer"></p>
+  </div>
+
+  <!-- TAB 5: LOOKUP -->
+  <div class="tab-pane" id="tab-lookup">
+    <div class="lookup-form">
+      <input
+        type="text"
+        class="lookup-input"
+        id="lookupInput"
+        maxlength="4"
+        placeholder="0000"
+        pattern="\d{4}"
+        inputmode="numeric"
+      />
+      <button class="btn" id="lookupBtn">Search</button>
+    </div>
+
+    <div id="lookupResult"></div>
+  </div>
+</div>
+
+<!-- GAP ANALYSIS MODAL -->
+<div class="modal-overlay" id="gapModal" style="display:none">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-title" id="modalNumber">----</div>
+    <div id="modalStats"></div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
