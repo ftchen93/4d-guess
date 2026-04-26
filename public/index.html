@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SG 4D Analysis</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -24,10 +24,10 @@
   <!-- TABS -->
   <nav class="tabs" role="tablist">
     <button class="tab-btn active" data-tab="results">Latest Results</button>
-    <button class="tab-btn" data-tab="frequency">Frequency Analysis</button>
+    <button class="tab-btn" data-tab="frequency">Frequency</button>
     <button class="tab-btn" data-tab="hotcold">Hot &amp; Cold</button>
     <button class="tab-btn" data-tab="suggest">Suggestions ⚠️</button>
-    <button class="tab-btn" data-tab="lookup">Number Lookup</button>
+    <button class="tab-btn" data-tab="lookup">Lookup</button>
   </nav>
 
   <!-- TAB 1: LATEST RESULTS -->
@@ -76,14 +76,12 @@
       <button class="pill-btn" data-hc-range="50">Last 50</button>
     </div>
 
-    <div class="card" style="margin-bottom:16px">
+    <div class="card">
       <div class="hc-section">
         <div class="hc-title hot">🔥 Hot Numbers</div>
         <div class="badge-grid" id="hotGrid"></div>
       </div>
-    </div>
-
-    <div class="card">
+      <hr class="hc-divider" />
       <div class="hc-section">
         <div class="hc-title cold">❄️ Cold Numbers</div>
         <div class="badge-grid" id="coldGrid"></div>
