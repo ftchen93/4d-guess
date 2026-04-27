@@ -227,9 +227,14 @@ function getCacheInfo() {
   };
 }
 
-// Auto-refresh every 24 hours at 06:00
+// Refresh 30 min after each draw closes: Wed/Sat/Sun at 7:30pm SGT = 11:30am UTC
+// Fallback daily refresh at 6am UTC covers any missed draws
+cron.schedule('30 11 * * 0,3,6', () => {
+  console.log('[cron] Post-draw refresh triggered (Wed/Sat/Sun 7:30pm SGT).');
+  refreshCache(true).catch(console.error);
+});
 cron.schedule('0 6 * * *', () => {
-  console.log('[cron] Daily refresh triggered.');
+  console.log('[cron] Daily fallback refresh triggered.');
   refreshCache(true).catch(console.error);
 });
 
